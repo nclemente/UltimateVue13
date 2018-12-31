@@ -5,31 +5,52 @@
                 <h1>Filters & Mixins</h1>
                 <!-- Exercise 1) -->
                 <p> Build a local Filter which reverses the Text it is applied on </p>
-                <input />
-
                 <!-- Exercise 2 -->
-                <!-- Build a global Filter which counts the length of a word and it appends it -->
+                <p> Build a global Filter which counts the length of a word and appends it </p>
                 <!-- Like this: "Test" => Gets Filtered to => "Test (4)" -->
+                <input v-model="toBeFiltered" />
+                <div>{{ toBeFiltered | reversedText | wordCount }}</div>
+                <hr />
 
                 <!-- Exercise 3 -->
-                <!-- Do the same as in Exercises 1 & 2, now with Computed Properties -->
+                <p> Do the same as in Exercises 1 &amp; 2, now with Computed Properties </p>
+                <input v-model="toBeComputed" />
+                <div>{{ computedReversedCounted }}</div>
+                <hr />
 
                 <!-- Exercise 4 -->
-                <!-- Share the Computed Property rebuilding Exercise 2 via a Mixin -->
+                <p> Share the Computed Property rebuilding Exercise 2 via a Mixin </p>
+                <input v-model="mixinText" />
+                <div>{{ mixinReversedCounted }}</div>
+                <hr />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import { reversedCountedMixin } from './reversedCountedMixin.js';
+
     export default {
         data() {
             return {
-                toBeReversed: '',
+                toBeFiltered: '',
+                toBeComputed: '',
             };
         },
+        mixins: [
+            reversedCountedMixin,
+        ],
         filters: {
-
+            reversedText(value) {
+                return value.split("").reverse().join("");
+            }
+        },
+        computed: {
+            computedReversedCounted() {
+                const cont =0;
+                return this.toBeComputed.split("").reverse().join("") + " (" +this.toBeComputed.length + ")";
+            },
         },
     }
 </script>

@@ -5,6 +5,11 @@ Vue.filter('to-lowercase', function(value) {
     return value.toLowerCase();
 });
 
+Vue.filter('wordCount', function(value) {
+    var count = value.length;
+    return `${value} (${count})`;
+});
+
 Vue.mixin({
     created() {
         console.log('Global Mixin - Created Hook');
@@ -12,6 +17,6 @@ Vue.mixin({
 });
 
 new Vue({
-  el: '#app',
-  render: h => h(App)
+    el: '#app',
+    render: h => h(App)
 })
