@@ -9,7 +9,4 @@ export const reversedCountedMixin = {
             return this.mixinText.split("").reverse().join("") + " (" + this.mixinText.length + ")";
         },
     },
-    created() {
-        console.log('My custom mixin is here!!! <<<<<');
-    },
 };
